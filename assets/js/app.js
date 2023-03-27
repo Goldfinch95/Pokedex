@@ -1,4 +1,3 @@
-//TODO: buscar la manera en que muestre hasta el pokemon 151(mew). luego de pasar a mew, que vuelva al pokemon 1 (bulbasaur).
 
 const imgPokemon = document.getElementById("img__pokemon");
 const spanPokemonNumber = document.getElementById("span__pokemon-number");
@@ -35,7 +34,7 @@ const connectPokeapi = async (pokemon)=>{
     }
 }
 
-//mostrar pokemon
+//mostrar información e imagen del pokemon
 
 const DisplayPokemonInfo = async (pokemon)=>{
     spanPokemonName.innerHTML = "Loading...";
@@ -55,7 +54,22 @@ const DisplayPokemonInfo = async (pokemon)=>{
     infoDataSpeed.innerHTML = `${pokemonData.stats[5].base_stat} MPH`
     PokemonNotFound.style.display = "none";
     imgPokemon.src = pokemonData["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
-    searchPokemon = pokemonData.id;
+    actualPokemon = pokemonData.id;
+    if(pokemonData.id > 151){
+        PokemonNotFound.style.display = "flex";
+        imgPokemon.style.display = "none";
+        spanPokemonName.innerHTML = "Not Found";
+        infoDataType.innerHTML = "Not Found";
+        spanPokemonNumber.innerHTML = "";
+        infoDataHeight.innerHTML = "";
+        infoDataWeight.innerHTML = "";
+        infoDataHp.innerHTML = "";
+        infoDataAttack.innerHTML = "";
+        infoDataDefense.innerHTML = "";
+        infoDataSpecialAttack.innerHTML ="";
+        infoDataSpecialDefense.innerHTML ="";
+        infoDataSpeed.innerHTML = "";
+    }
     }
     else{
         PokemonNotFound.style.display = "flex";
@@ -109,5 +123,3 @@ btnNextPokemon.addEventListener("click", ()=>{
     const searchPokemon = nextPokemon();
     DisplayPokemonInfo(searchPokemon);
 })
-
-DisplayPokemonInfo(searchPokemon)
