@@ -20,14 +20,15 @@ main{
 
 .img__pokedex{
     width: 100%;
-    max-width: 425px;
+    max-width: 100%;
 }
 
-.img__pokemon{
+.img__pokemonNotFound{
+    display: none;
     position: absolute;
     height: 18%;
     bottom: 55%;
-    left: 50%;
+    left: 27%;
     transform: translate(-63%, 20%);
     -webkit-transform: translate(-63%, 20%);
     -moz-transform: translate(-63%, 20%);
@@ -35,12 +36,76 @@ main{
     -o-transform: translate(-63%, 20%);
 }
 
+.img__pokemon{
+    position: absolute;
+    height: 18%;
+    bottom: 55%;
+    left: 30%;
+    transform: translate(-63%, 20%);
+    -webkit-transform: translate(-63%, 20%);
+    -moz-transform: translate(-63%, 20%);
+    -ms-transform: translate(-63%, 20%);
+    -o-transform: translate(-63%, 20%);
+}
+
+.container__box-info{
+    /*border: 2px solid #fff;*/
+    background-color: black;;
+    border: 2px solid #333;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    font-weight: 600;
+    color: black;
+    box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 56%;
+    width: 37%;
+    bottom: 13%;
+    left: 57%;
+    font-size: clamp(8px, 5vw, 25px);
+    color: #48be36;
+}
+
+.data-type{
+    /*border: 2px solid #fff;*/
+    width: 80%;
+    height: 25%;
+    padding: 10px;
+    font-size: 35px;
+}
+.data-hp{
+    /*border: 2px solid #fff;*/
+    width: 90%;
+    height: 10%;
+    text-align: end;
+    font-size: 28px;
+}
+
+.data-info{
+    /*border: 2px solid #fff;*/
+    width: 85%;
+    height: 100%;
+    text-align: start;
+    padding: 10px;
+    padding-top: 90px;
+}
+
+.data-speed{
+    /*border: 2px solid #fff;*/
+    text-align: start;
+    padding: 10px;
+}
 .h1__pokemon-data{
     position: absolute;
     font-weight: 600;
     color: #aaa;
     top: 54.5%;
-    right: 27%;
+    left: 22%;
     font-size: clamp(8px, 5vw, 25px);
 }
 
@@ -51,9 +116,9 @@ main{
 
 .form{
     position: absolute;
-    width: 65%;
+    width: 37%;
     top: 65%;
-    left: 13.5%;
+    left: 6.5%;
 }
 
 .input__search-pokemon{
@@ -76,10 +141,9 @@ main{
     display: flex;
     position: absolute;
     bottom: 10%;
-    left: 50%;
-    width: 65%;
+    left: 27%;
+    width: 35%;
     gap: 20px;
-    background-color: red;
     transform: translate(-57%, 0);
     -webkit-transform: translate(-57%, 0);
     -moz-transform: translate(-57%, 0);

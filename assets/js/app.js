@@ -7,8 +7,20 @@ const formSearchPokemon = document.getElementById("form__search-pokemon");
 const inputSearchPokemon = document.getElementById("input__search-pokemon");
 const btnPreviousPokemon = document.getElementById("button__previous-pokemon");
 const btnNextPokemon = document.getElementById("button__next-pokemon");
+const infoDataType = document.getElementById("info__data-type");
+const infoDataHeight = document.getElementById("info__data-height");
+const infoDataWeight = document.getElementById("info__data-weight");
+const infoDataHp = document.getElementById("info__data-hp");
+const infoDataAttack = document.getElementById("info__data-attack");
+const infoDataDefense = document.getElementById("info__data-defense");
+const infoDataSpecialAttack = document.getElementById("info__data-special-attack");
+const infoDataSpecialDefense = document.getElementById("info__data-special-defense");
+const infoDataSpeed = document.getElementById("info__data-speed");
+const PokemonNotFound = document.getElementById("img__pokemon-not-Found");
 
-let searchPokemon = 1;
+const firstPokemon = 1;
+const lastPokemon = 151;
+let actualPokemon = 0;
 
 //conectar la api
 const connectPokeapi = async (pokemon)=>{
@@ -26,36 +38,60 @@ const connectPokeapi = async (pokemon)=>{
 //mostrar pokemon
 
 const DisplayPokemonInfo = async (pokemon)=>{
-    spanPokemonName.innerHTML = "Cargando...";
+    spanPokemonName.innerHTML = "Loading...";
     const pokemonData = await connectPokeapi(pokemon);
     if(pokemonData){
     imgPokemon.style.display = "block";
     spanPokemonName.innerHTML = pokemonData.name;
     spanPokemonNumber.innerHTML = pokemonData.id;
+    infoDataType.innerHTML = `Type: ${pokemonData.types[0].type.name}`
+    infoDataHeight.innerHTML = `${pokemonData.height} m`
+    infoDataWeight.innerHTML = `${pokemonData.weight} kg`
+    infoDataHp.innerHTML = `${pokemonData.stats[0].base_stat} ♡`
+    infoDataAttack.innerHTML = `${pokemonData.stats[1].base_stat} ATK`
+    infoDataDefense.innerHTML = `${pokemonData.stats[2].base_stat} DEF`
+    infoDataSpecialAttack.innerHTML =`${pokemonData.stats[3].base_stat} ATK SPC`
+    infoDataSpecialDefense.innerHTML =`${pokemonData.stats[4].base_stat} DEF SPC`
+    infoDataSpeed.innerHTML = `${pokemonData.stats[5].base_stat} MPH`
+    PokemonNotFound.style.display = "none";
     imgPokemon.src = pokemonData["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
     searchPokemon = pokemonData.id;
     }
     else{
+        PokemonNotFound.style.display = "flex";
         imgPokemon.style.display = "none";
-        spanPokemonName.innerHTML = "No encontrado";
+        spanPokemonName.innerHTML = "Not Found";
+        infoDataType.innerHTML = "Not Found";
         spanPokemonNumber.innerHTML = "";
+        infoDataHeight.innerHTML = "";
+        infoDataWeight.innerHTML = "";
+        infoDataHp.innerHTML = "";
+        infoDataAttack.innerHTML = "";
+        infoDataDefense.innerHTML = "";
+        infoDataSpecialAttack.innerHTML ="";
+        infoDataSpecialDefense.innerHTML ="";
+        infoDataSpeed.innerHTML = "";
     }
 }
 
 // retroceder
 
 const previousPokemon = () => {
-    if(searchPokemon > 1){
-        searchPokemon -= 1;
-        return searchPokemon
+    actualPokemon--;
+    if(actualPokemon < firstPokemon){
+        actualPokemon = lastPokemon;
     }
+    return actualPokemon
 }
 
 // avanzar
 
 const nextPokemon = ()=>{
-    searchPokemon += 1;
-    return searchPokemon
+    actualPokemon++;
+    if(actualPokemon > lastPokemon){
+        actualPokemon = firstPokemon
+    }
+    return actualPokemon
 }
 
 formSearchPokemon.addEventListener("submit", (e)=>{

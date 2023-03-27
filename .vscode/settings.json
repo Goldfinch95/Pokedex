@@ -7,5 +7,6 @@
         "Pokedex",
         "Pokédex",
         "pokemon"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
