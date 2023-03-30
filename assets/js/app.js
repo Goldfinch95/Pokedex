@@ -43,9 +43,9 @@ const DisplayPokemonInfo = async (pokemon)=>{
     imgPokemon.style.display = "block";
     spanPokemonName.innerHTML = pokemonData.name;
     spanPokemonNumber.innerHTML = pokemonData.id;
-    infoDataType.innerHTML = `Type: ${pokemonData.types[0].type.name}`
-    infoDataHeight.innerHTML = `${pokemonData.height} m`
-    infoDataWeight.innerHTML = `${pokemonData.weight} kg`
+    infoDataType.innerHTML = `Type: ${pokemonData.types[1] ? pokemonData.types[0].type.name + '/' + pokemonData.types[1].type.name : pokemonData.types[0].type.name}`
+    infoDataHeight.innerHTML = `${pokemonData.height / 10} m`
+    infoDataWeight.innerHTML = `${pokemonData.weight / 10} kg`
     infoDataHp.innerHTML = `${pokemonData.stats[0].base_stat} ♡`
     infoDataAttack.innerHTML = `${pokemonData.stats[1].base_stat} ATK`
     infoDataDefense.innerHTML = `${pokemonData.stats[2].base_stat} DEF`
